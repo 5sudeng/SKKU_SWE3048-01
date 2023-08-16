@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MY PAGE</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #E6E6E6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: black;
+            text-align: center;
+        }
+
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 20px;
+            padding-top: 0px;
+            padding-bottom: 0%;
+            margin-bottom: 0%;
+        }
+
+        .title {
+            position: absolute;
+            left: 2%;
+            top: 0.5%;
+        }
+
+        #user {
+            padding: 10px 13px 10px 13px;
+        }
+
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-icon {
+            font-size: 24px;
+            color: #fff;
+            background-color: darkgray;
+            padding: 10px;
+            border-radius: 80%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .header-icon:hover {
+            background-color: #4D8076;
+        }
+
+        #mypage_section {
+            margin-top: 40px;
+        }
+
+        .mypage_content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px;
+            font-size: 20px;
+        }
+
+        .mypage_notice_list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 60%;
+            height: 150%;
+        }
+
+        .mypage_notice {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 20px;
+            padding: 10px;
+            padding-left: 0;
+            height: 50px;
+        }
+
+        .category {
+            margin: 0;
+            height: 100%;
+            width: 5%;
+            background-color: #4D8076;
+            color: white;
+            border-top-left-radius: 19px;
+            border-bottom-left-radius: 19px;
+            border-right: 1px solid black;
+            flex-shrink: 0; 
+        }
+
+        .category span {
+            display: inline-block;
+            padding: 0 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .mypage_notice > .category {
+            flex: 2;
+            padding: 10px;
+            font-size: 17px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+
+        .mypage_notice > .heart {
+            flex: 1;
+        }
+
+        .mypage_notice > div:nth-child(2) {
+            flex: 4;
+            padding: 5px;
+            font-size: 17px;
+        }
+
+        .heart {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 20px;
+        }
+
+        .heart span {
+            color: red;
+            padding: 0; 
+            margin: 0; 
+        }
+
+
+        .heart ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <header class="header" id="major_header">
+        <h1 class="title">MY PAGE</h1>
+        <div class="header-icons">
+            <a class="header-icon home" id="home" href="main.html">
+                <i class="fas fa-home"></i>
+            </a>
+            <a class="header-icon" id="user" href="mypage.html">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+    </header>
+    <section id="mypage_section">
+        <div class="mypage_content">
+            <ul class="mypage_notice_list">
+                
+            </ul>
+        </div>
+    </section>
+</div>
+
+<script>
+    // Fetch the data from mypage.json
+    fetch('http://localhost:3000/mypage')
+        .then(response => response.json())
+        .then(data => {
+            const noticeList = document.querySelector('.mypage_notice_list');
+
+            // Iterate over the data and create notice items
+            data.forEach(item => {
+                const noticeItem = document.createElement('li');
+                noticeItem.className = 'mypage_notice';
+
+                const category = document.createElement('div');
+                category.className = 'category';
+                category.innerHTML = `<span>${item.date}</span>`;
+
+                const noticeTitle = document.createElement('div');
+                noticeTitle.innerHTML = `<a href="${item.url}">${item.title}</a>`;
+
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '<span>❤️</span>';
+                
+                noticeItem.appendChild(category);
+                noticeItem.appendChild(noticeTitle);
+                noticeItem.appendChild(heart);
+                noticeList.appendChild(noticeItem);
+            });
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
+        
+
+        // 이벤트 위임을 사용하여 클릭 이벤트를 감지
+        document.addEventListener('click', function(event) {
+        // 하트 아이콘을 클릭한 경우에만 실행
+        if (event.target.closest('.heart')) {
+            // 클릭된 하트 아이콘의 부모 요소를 찾아서 데이터 삭제
+            const noticeItem = event.target.closest('.mypage_notice');
+            const noticeList = noticeItem.parentNode;
+
+            // 데이터의 ID를 가져오기 위해 하트 아이콘의 인덱스를 찾음
+            const index = Array.from(noticeList.children).indexOf(noticeItem);
+
+            // 데이터 삭제를 위해 fetch 요청을 보냄
+            fetch('http://localhost:3000/mypage/' + index, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (response.ok) {
+                    // 데이터 삭제 후 해당 요소를 DOM에서 제거
+                    noticeList.removeChild(noticeItem);
+                } else {
+                    console.log('Error:', response.status);
+                }
+            })
+            .catch(error => {
+                console.log('Error:', error);
+            });
+        }
+    });
+
+</script>
+
+</body>
+</html>

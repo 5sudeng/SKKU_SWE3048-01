@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MY PAGE</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #E6E6E6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: black;
+            text-align: center;
+        }
+
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 20px;
+            padding-top: 0px;
+            padding-bottom: 0%;
+            margin-bottom: 0%;
+        }
+
+        .title {
+            position: absolute;
+            left: 2%;
+            top: 0.5%;
+        }
+
+        #user {
+            padding: 10px 13px 10px 13px;
+        }
+
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-icon {
+            font-size: 24px;
+            color: #fff;
+            background-color: darkgray;
+            padding: 10px;
+            border-radius: 80%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .header-icon:hover {
+            background-color: #4D8076;
+        }
+
+        #mypage_section {
+            margin-top: 40px;
+        }
+
+        .mypage_content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px;
+            font-size: 20px;
+        }
+
+        .mypage_notice_list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 60%;
+            height: 100%;
+        }
+
+        .mypage_notice {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 20px;
+            padding: 10px;
+            padding-left: 0;
+            height: 50px;
+        }
+
+        .category {
+            margin: 0;
+            height: 100%;
+            width: 5%;
+            background-color: #4D8076;
+            color: white;
+            border-top-left-radius: 19px;
+            border-bottom-left-radius: 19px;
+            border-right: 1px solid black;
+            flex-shrink: 0; /* 추가 */
+        }
+
+        .category span {
+            display: inline-block;
+            padding: 0 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .mypage_notice > div {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .heart {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .heart span {
+            color: red;
+        }
+
+        .heart ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <header class="header" id="major_header">
+        <h1 class="title">MY PAGE</h1>
+        <div class="header-icons">
+            <a class="header-icon home" id="home" href="main.html">
+                <i class="fas fa-home"></i>
+            </a>
+            <a class="header-icon" id="user" href="mypage.html">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+    </header>
+    <section id="mypage_section">
+        <div class="mypage_content">
+            <ul class="mypage_notice_list">
+                
+            </ul>
+        </div>
+    </section>
+</div>
+
+<script>
+    // Fetch the data from mypage.json
+    fetch('http://localhost:3000/mypage')
+        .then(response => response.json())
+        .then(data => {
+            const noticeList = document.querySelector('.mypage_notice_list');
+
+            // Iterate over the data and create notice items
+            data.forEach(item => {
+                const noticeItem = document.createElement('li');
+                noticeItem.className = 'mypage_notice';
+
+                const category = document.createElement('div');
+                category.className = 'category';
+                category.innerHTML = `<span>${item.date}</span>`;
+
+                const noticeTitle = document.createElement('div');
+                noticeTitle.innerHTML = `<a href="${item.url}">${item.title}</a>`;
+
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '<span>❤️</span>';
+                
+
+                noticeItem.appendChild(category);
+                noticeItem.appendChild(noticeTitle);
+                noticeItem.appendChild(heart);
+                noticeList.appendChild(noticeItem);
+            });
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
+</script>
+
+</body>
+</html>

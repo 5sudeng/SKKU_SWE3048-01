@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>무용학과</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="major.css">
+</head>
+<body style="background-color: #E6E6E6;">
+    <div class="wrap">
+        <!--제목 및 헤더-->
+        <header class="header" id="major_header">
+            <h1 class="title">무용학과</h1>
+            <div class="header-icons">
+                <a class="header-icon home" id="home" href="main.html">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a class="header-icon" id="user" href="mypage.html">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+                <div class="clearfix"></div>
+            </header>
+
+            
+            <!--메인 공지사항-->
+            <section id="major_section">
+                <div class="notice_wrap">
+                    <ul id="notice_list"></ul>
+                </div>
+            </section>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function createNoticeElement(category, title, date, url, noticeId) {
+                const liEl = document.createElement('li');
+                liEl.classList.add('major_content');
+            
+                const dlEl = document.createElement('dl');
+                const dtEl = document.createElement('dt');
+            
+                const categorySpanEl = document.createElement('span');
+                categorySpanEl.classList.add('category');
+                categorySpanEl.textContent = category;
+            
+                const titleLinkEl = document.createElement('a');
+                titleLinkEl.href = url;
+                titleLinkEl.textContent = title;
+            
+                const ddEl = document.createElement('dd');
+                const ulEl = document.createElement('ul');
+                const liInnerEl = document.createElement('li');
+                liInnerEl.textContent = date;
+                liInnerEl.classList.add('date');
+            
+                const heartDivEl = document.createElement('div');
+                heartDivEl.classList.add('heart');
+            
+                const ulHeartEl = document.createElement('ul');
+                const liHeartEl = document.createElement('li');
+                const spanHeartEl = document.createElement('span');
+                spanHeartEl.textContent = '♡';
+                spanHeartEl.dataset.noticeId = noticeId; // 데이터셋에 공지사항 ID 저장
+            
+                liHeartEl.appendChild(spanHeartEl);
+                ulHeartEl.appendChild(liHeartEl);
+                heartDivEl.appendChild(ulHeartEl);
+            
+                dtEl.appendChild(categorySpanEl);
+                dtEl.appendChild(titleLinkEl);
+            
+                ulEl.appendChild(liInnerEl);
+                ddEl.appendChild(ulEl);
+            
+                dlEl.appendChild(dtEl);
+                dlEl.appendChild(ddEl);
+            
+                liEl.appendChild(dlEl);
+                liEl.appendChild(heartDivEl);
+            
+                return liEl;
+            }
+            
+            const noticeListEl = document.querySelector('#notice_list');
+
+            // JSON 파일 이름
+            const noticeData = [
+            {'id': 484,
+            'category': "",
+            'title': '제 33회 성균관대학교 전국 고/중/초등학생 무용경연대회 지도자상',
+            'url': 'https://dance.skku.edu/dance/notice.do?mode=view&articleNo=157111&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 485,
+            'category': "",
+            'title': '제 33회 전국 고/중/초등학생 무용경연대회 발레 수상자 안내',
+            'url': 'https://dance.skku.edu/dance/notice.do?mode=view&articleNo=157008&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 486,
+            'category': "",
+            'title': '제 33회 전국 고/중/초등학생 무용경연대회 컨템포러리댄스 수상자 안내',
+            'url': 'https://dance.skku.edu/dance/notice.do?mode=view&articleNo=157007&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 487,
+            'category': "",
+            'title': '제 33회 전국 고/중/초등학생 무용경연대회 한국무용 수상자 안내',
+            'url': 'https://dance.skku.edu/dance/notice.do?mode=view&articleNo=157006&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 488,
+            'category': "",
+            'title': '2023년 5월 21일 한국무용,컨템포러리댄스,발레 본선 예상시간 및 순서표',
+            'url': 'https://dance.skku.edu/dance/notice.do?mode=view&articleNo=157005&article.offset=0&articleLimit=10',
+            'date': '5월 21일(일)'},
+           {'id': 489,
+            'category': "",
+            'title': '2023년 제 33회 무용경연대회 발레 본선진출자',
+            'url': 'https://dance.skku.edu/dance/notice.do?mode=view&articleNo=157004&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 490,
+            'category': "",
+            'title': '2023년 5월 20일 발레 예선 순서표',
+            'url': 'https://dance.skku.edu/dance/notice.do?mode=view&articleNo=156992&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 491,
+            'category': "",
+            'title': '2023년 제 33회 무용경연대회 컨템포러리댄스 본선진출자',
+            'url': 'https://dance.skku.edu/dance/notice.do?mode=view&articleNo=156983&article.offset=0&articleLimit=10',
+            'date': ""}
+            ]
+
+            // noticeData를 사용하여 공지사항 생성
+            for (const notice of noticeData) {
+                const { id, category, title, url, date } = notice;
+                const noticeEl = createNoticeElement(category, title, date, url, id);
+                noticeListEl.appendChild(noticeEl);
+            }
+
+            // 하트 클릭 이벤트 리스너 등록
+            const hearts = document.querySelectorAll('.heart span');
+            hearts.forEach((heart) => {
+                heart.addEventListener('click', handleHeartClick);
+            });
+
+
+            // 하트 클릭 이벤트 핸들러
+            function handleHeartClick(event) {
+                const clickedHeart = event.target;
+                const noticeId = clickedHeart.dataset.noticeId;
+                const notice = noticeData.find((item) => item.id === parseInt(noticeId));
+            
+                // 하트 상태 변경
+                clickedHeart.textContent = '❤️';
+                clickedHeart.removeEventListener('click', handleHeartClick);
+            
+                // 다른 웹사이트에 공지사항 내용 전달
+                sendNoticeToOtherWebsite(notice);
+            }
+            
+
+            
+            // 다른 웹사이트에 공지사항 내용 전달하는 함수
+            function sendNoticeToOtherWebsite(notice) {
+                const url = 'http://localhost:3000/save-notice';
+            
+                const data = {
+                notice: notice
+                };
+            
+                const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+                };
+            
+                fetch(url, options)
+                .then((response) => {
+                    if (response.ok) {
+                    console.log('공지가 성공적으로 저장되었습니다.');
+                    } else {
+                    console.log('공지 저장에 실패했습니다.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('공지 저장 중 오류가 발생했습니다.', error);
+                });
+            }
+
+        </script>
+    </body>
+
+    
+</html>

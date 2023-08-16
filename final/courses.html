@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Courses</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .section {
+    overflow: hidden;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.outer-menu-item').hover(function () {
+        $(this).find('.inner-menu').show();
+      }, function () {
+        $(this).find('.inner-menu').hide();
+      });
+    });
+      $(document).ready(function() {
+      function setMaxHeight() {
+        var sections = $(".course-section"); // .course-section 클래스를 가진 요소들을 선택
+        var maxHeight = 0;
+
+        sections.each(function() {
+          var sectionHeight = $(this).outerHeight(); // 각 섹션의 높이를 가져옴
+          if (sectionHeight > maxHeight) {
+            maxHeight = sectionHeight; // 가장 큰 높이를 찾습니다.
+          }
+        });
+
+        sections.css("height", maxHeight + "px"); // 모든 섹션의 높이를 최대 높이로 설정
+      }
+
+      setMaxHeight(); // 페이지 로드 시 최대 높이 설정 함수를 호출
+
+      $(window).resize(function() {
+        setMaxHeight(); // 윈도우 크기가 변경될 때마다 최대 높이 설정 함수를 호출
+      });
+    });
+  </script>
+</head>
+<body>
+  <header id="main-header">
+    <h1 class="header-title"><a href="home.html" style="text-decoration: none; color: white">SUJEONG OH</a></h1>
+    <p class="header-subtitle"><a href="home.html" style="text-decoration: none; color: white">Artificial Intelligence Student</a></p>
+  </header>
+  <nav id="main-navigation">
+    <ul class="nav-menu">
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="home.html">Home</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="home.html#home-main-section">About Me</a></li>
+          <li class="inner-menu-item"><a href="home.html#main-aside">Skills</a></li>
+        </ul>
+      </li>
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="courses.html">Courses</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="courses.html#main-section1">Course 1</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section2">Course 2</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section3">Course 3</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section4">Course 4</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section5">Course 5</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section6">Course 6</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section7">Course 7</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section8">Course 8</a></li>
+        </ul>
+      </li>
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="projects.html">Projects</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="projects.html#main-section1">Project 1</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section2">Project 2</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section3">Project 3</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section4">Project 4</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section5">Project 5</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section6">Project 6</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section7">Project 7</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section8">Project 8</a></li>
+        </ul>
+      </li>
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="contact.html">Contact</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="contact.html#contact-section">contact</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div id="m-content">
+    <section class="course-section" id="main-section1">
+      <h2 class="section-title">Courses</h2>
+      <p class="section-subtitle">Machine Learning</p>
+      <p>The Machine Learning course introduces the fundamental concepts and techniques in machine learning. It covers topics such as supervised learning, unsupervised learning, and reinforcement learning. I learned how to apply machine learning algorithms to real-world problems and develop models that can make predictions and decisions based on data.
+      </p>
+    </section>
+    <section class="course-section" id="main-section2">
+      <h2 class="section-title">Courses</h2>
+      <p class="section-subtitle">Deep Learning</p>
+      <p>The Deep Learning course explores advanced neural network architectures and algorithms used in deep learning. It covers topics such as convolutional neural networks (CNNs), recurrent neural networks (RNNs), and generative adversarial networks (GANs). I gained hands-on experience in designing and training deep learning models for various applications, such as computer vision, natural language processing, and speech recognition.
+      </p>
+    </section>
+    <section class="course-section" id="main-section3">
+      <h2 class="section-title">Courses</h2>
+      <p class="section-subtitle">Natural Language Processing</p>
+      <p>The Natural Language Processing course focuses on the analysis and understanding of human language by computers. It covers techniques for processing and interpreting textual data, including text classification, information extraction, sentiment analysis, and machine translation. I learned how to develop language models and apply them to tasks such as text generation, document summarization, and question answering.
+      </p>
+    </section>
+    <section class="course-section" id="main-section4">
+      <h2 class="section-title">Courses</h2>
+      <p class="section-subtitle">Java Programming</p>
+      <p>The Java Programming course provides a comprehensive introduction to the Java programming language. It covers the fundamental concepts of object-oriented programming, including classes, inheritance, polymorphism, and interfaces. I learned how to write Java programs to solve practical problems, develop graphical user interfaces, and work with data structures and algorithms.
+      </p>
+    </section>
+    <section class="course-section" id="main-section5">
+      <h2 class="section-title">Courses</h2>
+      <p class="section-subtitle">Web Programming</p>
+      <p>The Web Programming course explores the development of dynamic and interactive websites. It covers front-end technologies such as HTML, CSS, and JavaScript, as well as back-end technologies like server-side scripting and database integration. I learned how to design and implement web applications, handle user input, manage data, and create engaging user interfaces.
+      </p>
+    </section>
+    <section class="course-section" id="main-section6">
+      <h2 class="section-title">Courses</h2>
+      <p class="section-subtitle">Data Structure / Algorithm</p>
+      <p>The Data Structure / Algorithm course focuses on the design and analysis of efficient data structures and algorithms. It covers topics such as arrays, linked lists, stacks, queues, trees, graphs, sorting algorithms, and searching algorithms. I learned how to choose appropriate data structures and algorithms for different problem scenarios and analyze their time and space complexity.
+      </p>
+    </section>
+    <section class="course-section" id="main-section7">
+      <h2 class="section-title">Courses</h2>
+      <p class="section-subtitle">System Programming</p>
+      <p>The System Programming course delves into the low-level aspects of software development, focusing on system-level programming and operating systems. It covers topics such as process management, memory management, file systems, and network programming. I learned will gain a deep understanding of how software interacts with hardware and learn how to develop efficient and robust system-level software.
+      </p>
+    </section>
+    <section class="course-section" id="main-section8">
+      <h2 class="section-title">Courses</h2>
+      <p class="section-subtitle">Data Analysis</p>
+      <p>The Data Analysis course teaches the principles and techniques for analyzing and interpreting data. It covers topics such as data visualization, exploratory data analysis, statistical modeling, and predictive analytics. I learned how to apply various data analysis methods using tools such as Python and R, and gain insights from data to support decision-making and problem-solving.
+      </p>
+    </section>
+  </div>
+
+  <footer id="main-footer">
+    &copy; Created By Sujeong Oh
+  </footer>
+</body>
+</html>

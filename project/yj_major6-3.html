@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>융합생명공학과</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="major.css">
+</head>
+<body style="background-color: #E6E6E6;">
+    <div class="wrap">
+        <!--제목 및 헤더-->
+        <header class="header" id="major_header">
+            <h1 class="title">융합생명공학과</h1>
+            <div class="header-icons">
+                <a class="header-icon home" id="home" href="main.html">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a class="header-icon" id="user" href="mypage.html">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+                <div class="clearfix"></div>
+            </header>
+
+            
+            <!--메인 공지사항-->
+            <section id="major_section">
+                <div class="notice_wrap">
+                    <ul id="notice_list"></ul>
+                </div>
+            </section>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function createNoticeElement(category, title, date, url, noticeId) {
+                const liEl = document.createElement('li');
+                liEl.classList.add('major_content');
+            
+                const dlEl = document.createElement('dl');
+                const dtEl = document.createElement('dt');
+            
+                const categorySpanEl = document.createElement('span');
+                categorySpanEl.classList.add('category');
+                categorySpanEl.textContent = category;
+            
+                const titleLinkEl = document.createElement('a');
+                titleLinkEl.href = url;
+                titleLinkEl.textContent = title;
+            
+                const ddEl = document.createElement('dd');
+                const ulEl = document.createElement('ul');
+                const liInnerEl = document.createElement('li');
+                liInnerEl.textContent = date;
+                liInnerEl.classList.add('date');
+            
+                const heartDivEl = document.createElement('div');
+                heartDivEl.classList.add('heart');
+            
+                const ulHeartEl = document.createElement('ul');
+                const liHeartEl = document.createElement('li');
+                const spanHeartEl = document.createElement('span');
+                spanHeartEl.textContent = '♡';
+                spanHeartEl.dataset.noticeId = noticeId; // 데이터셋에 공지사항 ID 저장
+            
+                liHeartEl.appendChild(spanHeartEl);
+                ulHeartEl.appendChild(liHeartEl);
+                heartDivEl.appendChild(ulHeartEl);
+            
+                dtEl.appendChild(categorySpanEl);
+                dtEl.appendChild(titleLinkEl);
+            
+                ulEl.appendChild(liInnerEl);
+                ddEl.appendChild(ulEl);
+            
+                dlEl.appendChild(dtEl);
+                dlEl.appendChild(ddEl);
+            
+                liEl.appendChild(dlEl);
+                liEl.appendChild(heartDivEl);
+            
+                return liEl;
+            }
+            
+            const noticeListEl = document.querySelector('#notice_list');
+
+            // JSON 파일 이름
+            const noticeData = [
+            {'id': 861,
+            'category': '[채용/모집]',
+            'title': '[채용/모집][환경부 국립생물자원관] 2023년 하계 대학생 현장실습 참가 모집',
+            'url': 'https://skb.skku.edu/gene/community/under_notice.do?mode=view&articleNo=157332&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 862,
+            'category': '[채용/모집]',
+            'title': '[차세대바이오헬스] 2023 하반기 녹십자 현장실습 모집',
+            'url': 'https://skb.skku.edu/gene/community/under_notice.do?mode=view&articleNo=157045&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 863,
+            'category': '[채용/모집]',
+            'title': '[행사/세미나]융합생명공학과 특별세미나(5/17, 수) "싱글셀 RNA 시퀀싱 분석으로 BTS(BioTechnology Star)되기"',
+            'url': 'https://skb.skku.edu/gene/community/under_notice.do?mode=view&articleNo=156616&article.offset=0&articleLimit=10',
+            'date': '2023-05-17'},
+           {'id': 864,
+            'category': '[채용/모집]',
+            'title': '[행사/세미나]융합생명공학과 특별 세미나(5/24, 수) "Peptide nucleic acid: characteristics, applications, and potential"',
+            'url': 'https://skb.skku.edu/gene/community/under_notice.do?mode=view&articleNo=156595&article.offset=0&articleLimit=10',
+            'date': '2023-05-24'},
+           {'id': 865,
+            'category': '[채용/모집]',
+            'title': '[장학]2023학년도 1학기 심산장학생 제출 서류',
+            'url': 'https://skb.skku.edu/gene/community/under_notice.do?mode=view&articleNo=156420&article.offset=0&articleLimit=10',
+            'date': '5/15(월)'},
+           {'id': 866,
+            'category': '[채용/모집]',
+            'title': '[학사]2023학년도 1학기 대학원 석사 학위논문 본심(open talk) 일정 안내',
+            'url': 'https://skb.skku.edu/gene/community/under_notice.do?mode=view&articleNo=156370&article.offset=0&articleLimit=10',
+            'date': '6월 12일'},
+           {'id': 867,
+            'category': '[채용/모집]',
+            'title': "[학사]2023학년도 1학기 대학원 학위논문 '가논문' 제출 일정 안내",
+            'url': 'https://skb.skku.edu/gene/community/under_notice.do?mode=view&articleNo=156365&article.offset=0&articleLimit=10',
+            'date': '23.06.12'},
+           {'id': 868,
+            'category': '[채용/모집]',
+            'title': '[채용/모집][융합트랙]녹십자 기업탐방 참가자모집(5/19 개최)(선착순 20명 모집)',
+            'url': 'https://skb.skku.edu/gene/community/under_notice.do?mode=view&articleNo=156280&article.offset=0&articleLimit=10',
+            'date': '13:00~17:30'}
+            ]
+
+            // noticeData를 사용하여 공지사항 생성
+            for (const notice of noticeData) {
+                const { id, category, title, url, date } = notice;
+                const noticeEl = createNoticeElement(category, title, date, url, id);
+                noticeListEl.appendChild(noticeEl);
+            }
+
+            // 하트 클릭 이벤트 리스너 등록
+            const hearts = document.querySelectorAll('.heart span');
+            hearts.forEach((heart) => {
+                heart.addEventListener('click', handleHeartClick);
+            });
+
+
+            // 하트 클릭 이벤트 핸들러
+            function handleHeartClick(event) {
+                const clickedHeart = event.target;
+                const noticeId = clickedHeart.dataset.noticeId;
+                const notice = noticeData.find((item) => item.id === parseInt(noticeId));
+            
+                // 하트 상태 변경
+                clickedHeart.textContent = '❤️';
+                clickedHeart.removeEventListener('click', handleHeartClick);
+            
+                // 다른 웹사이트에 공지사항 내용 전달
+                sendNoticeToOtherWebsite(notice);
+            }
+            
+
+            
+            // 다른 웹사이트에 공지사항 내용 전달하는 함수
+            function sendNoticeToOtherWebsite(notice) {
+                const url = 'http://localhost:3000/save-notice';
+            
+                const data = {
+                notice: notice
+                };
+            
+                const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+                };
+            
+                fetch(url, options)
+                .then((response) => {
+                    if (response.ok) {
+                    console.log('공지가 성공적으로 저장되었습니다.');
+                    } else {
+                    console.log('공지 저장에 실패했습니다.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('공지 저장 중 오류가 발생했습니다.', error);
+                });
+            }
+
+        </script>
+    </body>
+
+    
+</html>

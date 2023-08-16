@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sujeong Oh</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.outer-menu-item').hover(function () {
+        $(this).find('.inner-menu').show();
+      }, function () {
+        $(this).find('.inner-menu').hide();
+      });
+
+      $('.red').click(function () {
+        $('body').toggleClass('red-mode');
+      });
+
+      $('.orange').click(function () {
+        $('body').toggleClass('orange-mode');
+      });
+
+      $('.yellow').click(function () {
+        $('body').toggleClass('yellow-mode');
+      });
+
+      $('.green').click(function () {
+        $('body').toggleClass('green-mode');
+      });
+
+      $('.indigo').click(function () {
+        $('body').toggleClass('indigo-mode');
+      });
+
+      $('.blue').click(function () {
+        $('body').toggleClass('blue-mode');
+      });
+
+      $('.violet').click(function () {
+        $('body').toggleClass('violet-mode');
+      });
+
+      $('.pink').click(function () {
+        $('body').toggleClass('pink-mode');
+      });
+
+      $('.brown').click(function () {
+        $('body').toggleClass('brown-mode');
+      });
+
+      $('.gray').click(function () {
+        $('body').toggleClass('gray-mode');
+      });
+    });
+  </script>
+</head>
+<body>
+  <header id="main-header">
+    <h1 class="header-title"><a href="home.html" style="text-decoration: none; color: white">SUJEONG OH</a></h1>
+    <p class="header-subtitle"><a href="home.html" style="text-decoration: none; color: white">Artificial Intelligence Student</a></p>
+  </header>
+  <nav id="main-navigation">
+    <ul class="nav-menu">
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="home.html">Home</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="home.html#home-main-section">About Me</a></li>
+          <li class="inner-menu-item"><a href="home.html#main-aside">Skills</a></li>
+        </ul>
+      </li>
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="courses.html">Courses</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="courses.html#main-section1">Course 1</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section2">Course 2</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section3">Course 3</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section4">Course 4</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section5">Course 5</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section6">Course 6</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section7">Course 7</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section8">Course 8</a></li>
+        </ul>
+      </li>
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="projects.html">Projects</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="projects.html#main-section1">Project 1</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section2">Project 2</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section3">Project 3</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section4">Project 4</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section5">Project 5</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section6">Project 6</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section7">Project 7</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section8">Project 8</a></li>
+        </ul>
+      </li>
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="contact.html">Contact</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="contact.html#contact-section">contact</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div class="color-options">
+    <button class="color-option red" data-color="red"></button>
+    <button class="color-option orange" data-color="orange"></button>
+    <button class="color-option yellow" data-color="yellow"></button>
+    <button class="color-option green" data-color="green"></button>
+    <button class="color-option blue" data-color="blue"></button>
+    <button class="color-option indigo" data-color="indigo"></button>
+    <button class="color-option violet" data-color="violet"></button>
+    <button class="color-option pink" data-color="pink"></button>
+    <button class="color-option brown" data-color="brown"></button>
+    <button class="color-option gray" data-color="gray"></button>
+  </div>
+  <div id="main-content">
+    <section id="home-main-section">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">Passionate about AI and its applications</p>
+      <p>
+        I am a 3rd-year AI major at Sungkyunkwan University. Through my studies, I have gained knowledge and skills in various areas such as machine learning, natural language processing, computer vision, and deep learning. I am passionate about using AI to solve real-world problems and improve people's lives.
+      </p>
+      <p>
+      <br/>If you would like to know more about me or discuss potential collaborations, please feel free to contact me using the information provided <a href="contact.html" style="color: black">here</a>.
+      </p>
+    </section>
+    <aside id="main-aside">
+      <h2 class="aside-title">Skills</h2>
+      <p class="aside-subtitle">Here are some of my skills:</p>
+      <ul class="skill-list">
+        <li class="skill-item">Python / C / Java</li>
+        <li class="skill-item">HTML / CSS / JavaScript</li>
+        <li class="skill-item">PyTorch / TensorFlow / Keras</li>
+        <li class="skill-item">Machine Learning / Deep Learning</li>
+        <li class="skill-item">NLP / Computer Vision</li>
+      </ul>
+      <p style="margin-bottom: 4px;"><a href="https://github.com/5sudeng">GitHub</a></p>
+      <p><a href="https://www.linkedin.com/in/sujeong-oh-7b0023228/">LinkedIn</a></p>
+    </aside>
+  </div>
+  <footer id="main-footer">
+    &copy; Created By Sujeong Oh
+  </footer>
+</body>
+</html>

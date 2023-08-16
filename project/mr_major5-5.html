@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>사회복지학과</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="major.css">
+</head>
+<body style="background-color: #E6E6E6;">
+    <div class="wrap">
+        <!--제목 및 헤더-->
+        <header class="header" id="major_header">
+            <h1 class="title">사회복지학과</h1>
+            <div class="header-icons">
+                <a class="header-icon home" id="home" href="main.html">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a class="header-icon" id="user" href="mypage.html">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+                <div class="clearfix"></div>
+            </header>
+
+            
+            <!--메인 공지사항-->
+            <section id="major_section">
+                <div class="notice_wrap">
+                    <ul id="notice_list"></ul>
+                </div>
+            </section>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function createNoticeElement(category, title, date, url, noticeId) {
+                const liEl = document.createElement('li');
+                liEl.classList.add('major_content');
+            
+                const dlEl = document.createElement('dl');
+                const dtEl = document.createElement('dt');
+            
+                const categorySpanEl = document.createElement('span');
+                categorySpanEl.classList.add('category');
+                categorySpanEl.textContent = category;
+            
+                const titleLinkEl = document.createElement('a');
+                titleLinkEl.href = url;
+                titleLinkEl.textContent = title;
+            
+                const ddEl = document.createElement('dd');
+                const ulEl = document.createElement('ul');
+                const liInnerEl = document.createElement('li');
+                liInnerEl.textContent = date;
+                liInnerEl.classList.add('date');
+            
+                const heartDivEl = document.createElement('div');
+                heartDivEl.classList.add('heart');
+            
+                const ulHeartEl = document.createElement('ul');
+                const liHeartEl = document.createElement('li');
+                const spanHeartEl = document.createElement('span');
+                spanHeartEl.textContent = '♡';
+                spanHeartEl.dataset.noticeId = noticeId; // 데이터셋에 공지사항 ID 저장
+            
+                liHeartEl.appendChild(spanHeartEl);
+                ulHeartEl.appendChild(liHeartEl);
+                heartDivEl.appendChild(ulHeartEl);
+            
+                dtEl.appendChild(categorySpanEl);
+                dtEl.appendChild(titleLinkEl);
+            
+                ulEl.appendChild(liInnerEl);
+                ddEl.appendChild(ulEl);
+            
+                dlEl.appendChild(dtEl);
+                dlEl.appendChild(ddEl);
+            
+                liEl.appendChild(dlEl);
+                liEl.appendChild(heartDivEl);
+            
+                return liEl;
+            }
+            
+            const noticeListEl = document.querySelector('#notice_list');
+
+            // JSON 파일 이름
+            const noticeData = [
+            {'id': 369,
+            'category': '[대학원]',
+            'title': '[대학원]2023학년도 1학기 대학원 학위논문 심사 관련 후속 조치 및 학위논문 제출 안내',
+            'url': 'https://skb.skku.edu/welfare/community/notice.do?mode=view&articleNo=157721&article.offset=0&articleLimit=10',
+            'date': '2023.7.21.'},
+           {'id': 370,
+            'category': '[대학원]',
+            'title': '[행사/세미나]제3회 장애인삶 패널조사 학술대회 논문공모 및 대학원생 논문경진대회 안내',
+            'url': 'https://skb.skku.edu/welfare/community/notice.do?mode=view&articleNo=157714&article.offset=0&articleLimit=10',
+            'date': '2023.10.5.'},
+           {'id': 371,
+            'category': '[대학원]',
+            'title': '[사회복지현장실습][사회복지현장실습] 사회복지현장실습 및 세미나2 오리엔테이션 일정 안내',
+            'url': 'https://skb.skku.edu/welfare/community/notice.do?mode=view&articleNo=157633&article.offset=0&articleLimit=10',
+            'date': '2023년 6월 9일'},
+           {'id': 372,
+            'category': '[대학원]',
+            'title': '[대학원]2023학년도 제1회 대학원 연구성과 경진대회 개최 안내(SKKU Research Matters)',
+            'url': 'https://skb.skku.edu/welfare/community/notice.do?mode=view&articleNo=157629&article.offset=0&articleLimit=10',
+            'date': '2023.6.23.'},
+           {'id': 373,
+            'category': '[대학원]',
+            'title': '[대학원]2023학년도 1학기 학위논문 예/본심 참관 안내',
+            'url': 'https://skb.skku.edu/welfare/community/notice.do?mode=view&articleNo=157581&article.offset=0&articleLimit=10',
+            'date': '2023. 6. 2.(금)'},
+           {'id': 374,
+            'category': '[대학원]',
+            'title': '[학사]2023학년도 하계 우수학부생 연구학점제 시행 안내',
+            'url': 'https://skb.skku.edu/welfare/community/notice.do?mode=view&articleNo=157429&article.offset=0&articleLimit=10',
+            'date': '2023. 5. 24.(수) ~ 2023. 5. 31.(수)'},
+           {'id': 375,
+            'category': '[대학원]',
+            'title': '[행사/세미나][이화여대 심리측정통계 연구실] 2023년 하계 방법론 워크숍',
+            'url': 'https://skb.skku.edu/welfare/community/notice.do?mode=view&articleNo=157388&article.offset=0&articleLimit=10',
+            'date': '2023년 7월 3일'},
+           {'id': 376,
+            'category': '[대학원]',
+            'title': '[행사/세미나][서울대 국제이주와포용사회센터] 디지털 기술과 돌봄 세미나 안내',
+            'url': 'https://skb.skku.edu/welfare/community/notice.do?mode=view&articleNo=157056&article.offset=0&articleLimit=10',
+            'date': '2023. 6. 12.'}
+            ]
+
+            // noticeData를 사용하여 공지사항 생성
+            for (const notice of noticeData) {
+                const { id, category, title, url, date } = notice;
+                const noticeEl = createNoticeElement(category, title, date, url, id);
+                noticeListEl.appendChild(noticeEl);
+            }
+
+            // 하트 클릭 이벤트 리스너 등록
+            const hearts = document.querySelectorAll('.heart span');
+            hearts.forEach((heart) => {
+                heart.addEventListener('click', handleHeartClick);
+            });
+
+
+            // 하트 클릭 이벤트 핸들러
+            function handleHeartClick(event) {
+                const clickedHeart = event.target;
+                const noticeId = clickedHeart.dataset.noticeId;
+                const notice = noticeData.find((item) => item.id === parseInt(noticeId));
+            
+                // 하트 상태 변경
+                clickedHeart.textContent = '❤️';
+                clickedHeart.removeEventListener('click', handleHeartClick);
+            
+                // 다른 웹사이트에 공지사항 내용 전달
+                sendNoticeToOtherWebsite(notice);
+            }
+            
+
+            
+            // 다른 웹사이트에 공지사항 내용 전달하는 함수
+            function sendNoticeToOtherWebsite(notice) {
+                const url = 'http://localhost:3000/save-notice';
+            
+                const data = {
+                notice: notice
+                };
+            
+                const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+                };
+            
+                fetch(url, options)
+                .then((response) => {
+                    if (response.ok) {
+                    console.log('공지가 성공적으로 저장되었습니다.');
+                    } else {
+                    console.log('공지 저장에 실패했습니다.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('공지 저장 중 오류가 발생했습니다.', error);
+                });
+            }
+
+        </script>
+    </body>
+
+    
+</html>

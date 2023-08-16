@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>물리학과</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="major.css">
+</head>
+<body style="background-color: #E6E6E6;">
+    <div class="wrap">
+        <!--제목 및 헤더-->
+        <header class="header" id="major_header">
+            <h1 class="title">물리학과</h1>
+            <div class="header-icons">
+                <a class="header-icon home" id="home" href="main.html">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a class="header-icon" id="user" href="mypage.html">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+                <div class="clearfix"></div>
+            </header>
+
+            
+            <!--메인 공지사항-->
+            <section id="major_section">
+                <div class="notice_wrap">
+                    <ul id="notice_list"></ul>
+                </div>
+            </section>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function createNoticeElement(category, title, date, url, noticeId) {
+                const liEl = document.createElement('li');
+                liEl.classList.add('major_content');
+            
+                const dlEl = document.createElement('dl');
+                const dtEl = document.createElement('dt');
+            
+                const categorySpanEl = document.createElement('span');
+                categorySpanEl.classList.add('category');
+                categorySpanEl.textContent = category;
+            
+                const titleLinkEl = document.createElement('a');
+                titleLinkEl.href = url;
+                titleLinkEl.textContent = title;
+            
+                const ddEl = document.createElement('dd');
+                const ulEl = document.createElement('ul');
+                const liInnerEl = document.createElement('li');
+                liInnerEl.textContent = date;
+                liInnerEl.classList.add('date');
+            
+                const heartDivEl = document.createElement('div');
+                heartDivEl.classList.add('heart');
+            
+                const ulHeartEl = document.createElement('ul');
+                const liHeartEl = document.createElement('li');
+                const spanHeartEl = document.createElement('span');
+                spanHeartEl.textContent = '♡';
+                spanHeartEl.dataset.noticeId = noticeId; // 데이터셋에 공지사항 ID 저장
+            
+                liHeartEl.appendChild(spanHeartEl);
+                ulHeartEl.appendChild(liHeartEl);
+                heartDivEl.appendChild(ulHeartEl);
+            
+                dtEl.appendChild(categorySpanEl);
+                dtEl.appendChild(titleLinkEl);
+            
+                ulEl.appendChild(liInnerEl);
+                ddEl.appendChild(ulEl);
+            
+                dlEl.appendChild(dtEl);
+                dlEl.appendChild(ddEl);
+            
+                liEl.appendChild(dlEl);
+                liEl.appendChild(heartDivEl);
+            
+                return liEl;
+            }
+            
+            const noticeListEl = document.querySelector('#notice_list');
+
+            // JSON 파일 이름
+            const noticeData = [
+            {'id': 557,
+            'category': '[장학]',
+            'title': '[장학][6/5(월)~6/21(수)] 2023학년도 2학기 성적우수장학금 신청 안내',
+            'url': 'https://skb.skku.edu/physics/notice/notice.do?mode=view&articleNo=157710&article.offset=0&articleLimit=10',
+            'date': '2023.6.21.'},
+           {'id': 558,
+            'category': '[장학]',
+            'title': '[학사]2023학년도 1학기 학부 졸업논문 포스터 발표 안내',
+            'url': 'https://skb.skku.edu/physics/notice/notice.do?mode=view&articleNo=157632&article.offset=0&articleLimit=10',
+            'date': '2023년 5월 31일'},
+           {'id': 559,
+            'category': '[장학]',
+            'title': '[학사]2023학년도 하계 우수학부생 연구학점제 신청안내( ~ 05/31(수))',
+            'url': 'https://skb.skku.edu/physics/notice/notice.do?mode=view&articleNo=157311&article.offset=0&articleLimit=10',
+            'date': '2023. 5. 24.(수) ~ 2023. 5. 31.(수)'},
+           {'id': 560,
+            'category': '[장학]',
+            'title': '[채용/모집](주)티에스싸이언스 기술영업부/고객지원부 신입 및 경력 채용',
+            'url': 'https://skb.skku.edu/physics/notice/notice.do?mode=view&articleNo=157096&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 561,
+            'category': '[장학]',
+            'title': '[학사][5. 22.(월) 10:00 ~ 6. 2.(금) 23:00] 2023학년도 1학기 기말강의평가 시행 안내',
+            'url': 'https://skb.skku.edu/physics/notice/notice.do?mode=view&articleNo=157024&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 562,
+            'category': '[장학]',
+            'title': '[학사][2023/6/19(월)~6/30(금)] 하계방학 석학초청 특별강좌 개설 안내',
+            'url': 'https://skb.skku.edu/physics/notice/notice.do?mode=view&articleNo=156916&article.offset=0&articleLimit=10',
+            'date': '6월19일(월)'},
+           {'id': 563,
+            'category': '[장학]',
+            'title': '[행사/세미나][Colloquium] May 24(Wed.) Anyon fractional statistics',
+            'url': 'https://skb.skku.edu/physics/notice/notice.do?mode=view&articleNo=156845&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 564,
+            'category': '[장학]',
+            'title': '[학사][신청기간: 5/22(월) ~ 6/2(금)] 2023학년도 2학기 학석사연계과정 신청안내',
+            'url': 'https://skb.skku.edu/physics/notice/notice.do?mode=view&articleNo=156840&article.offset=0&articleLimit=10',
+            'date': '2023.5.22.(월) ~ 2023.6.2.(금)'}
+            ]
+
+            // noticeData를 사용하여 공지사항 생성
+            for (const notice of noticeData) {
+                const { id, category, title, url, date } = notice;
+                const noticeEl = createNoticeElement(category, title, date, url, id);
+                noticeListEl.appendChild(noticeEl);
+            }
+
+            // 하트 클릭 이벤트 리스너 등록
+            const hearts = document.querySelectorAll('.heart span');
+            hearts.forEach((heart) => {
+                heart.addEventListener('click', handleHeartClick);
+            });
+
+
+            // 하트 클릭 이벤트 핸들러
+            function handleHeartClick(event) {
+                const clickedHeart = event.target;
+                const noticeId = clickedHeart.dataset.noticeId;
+                const notice = noticeData.find((item) => item.id === parseInt(noticeId));
+            
+                // 하트 상태 변경
+                clickedHeart.textContent = '❤️';
+                clickedHeart.removeEventListener('click', handleHeartClick);
+            
+                // 다른 웹사이트에 공지사항 내용 전달
+                sendNoticeToOtherWebsite(notice);
+            }
+            
+
+            
+            // 다른 웹사이트에 공지사항 내용 전달하는 함수
+            function sendNoticeToOtherWebsite(notice) {
+                const url = 'http://localhost:3000/save-notice';
+            
+                const data = {
+                notice: notice
+                };
+            
+                const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+                };
+            
+                fetch(url, options)
+                .then((response) => {
+                    if (response.ok) {
+                    console.log('공지가 성공적으로 저장되었습니다.');
+                    } else {
+                    console.log('공지 저장에 실패했습니다.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('공지 저장 중 오류가 발생했습니다.', error);
+                });
+            }
+
+        </script>
+    </body>
+
+    
+</html>

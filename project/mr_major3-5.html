@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>통계학과</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="major.css">
+</head>
+<body style="background-color: #E6E6E6;">
+    <div class="wrap">
+        <!--제목 및 헤더-->
+        <header class="header" id="major_header">
+            <h1 class="title">통계학과</h1>
+            <div class="header-icons">
+                <a class="header-icon home" id="home" href="main.html">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a class="header-icon" id="user" href="mypage.html">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+                <div class="clearfix"></div>
+            </header>
+
+            
+            <!--메인 공지사항-->
+            <section id="major_section">
+                <div class="notice_wrap">
+                    <ul id="notice_list"></ul>
+                </div>
+            </section>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function createNoticeElement(category, title, date, url, noticeId) {
+                const liEl = document.createElement('li');
+                liEl.classList.add('major_content');
+            
+                const dlEl = document.createElement('dl');
+                const dtEl = document.createElement('dt');
+            
+                const categorySpanEl = document.createElement('span');
+                categorySpanEl.classList.add('category');
+                categorySpanEl.textContent = category;
+            
+                const titleLinkEl = document.createElement('a');
+                titleLinkEl.href = url;
+                titleLinkEl.textContent = title;
+            
+                const ddEl = document.createElement('dd');
+                const ulEl = document.createElement('ul');
+                const liInnerEl = document.createElement('li');
+                liInnerEl.textContent = date;
+                liInnerEl.classList.add('date');
+            
+                const heartDivEl = document.createElement('div');
+                heartDivEl.classList.add('heart');
+            
+                const ulHeartEl = document.createElement('ul');
+                const liHeartEl = document.createElement('li');
+                const spanHeartEl = document.createElement('span');
+                spanHeartEl.textContent = '♡';
+                spanHeartEl.dataset.noticeId = noticeId; // 데이터셋에 공지사항 ID 저장
+            
+                liHeartEl.appendChild(spanHeartEl);
+                ulHeartEl.appendChild(liHeartEl);
+                heartDivEl.appendChild(ulHeartEl);
+            
+                dtEl.appendChild(categorySpanEl);
+                dtEl.appendChild(titleLinkEl);
+            
+                ulEl.appendChild(liInnerEl);
+                ddEl.appendChild(ulEl);
+            
+                dlEl.appendChild(dtEl);
+                dlEl.appendChild(ddEl);
+            
+                liEl.appendChild(dlEl);
+                liEl.appendChild(heartDivEl);
+            
+                return liEl;
+            }
+            
+            const noticeListEl = document.querySelector('#notice_list');
+
+            // JSON 파일 이름
+            const noticeData = [
+            {'id': 158,
+            'category': '[일반]',
+            'title': '[일반][경제대학] Co-op(현장실습프로그램) 이수 안내',
+            'url': 'https://stat.skku.edu/stat/community/under_notice.do?mode=view&articleNo=157644&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 159,
+            'category': '[일반]',
+            'title': '[행사/세미나][성균관대학교] 글로벌 IT전문가와 킹고인의 쉰 번째 만남 (화상강연)',
+            'url': 'https://stat.skku.edu/stat/community/under_notice.do?mode=view&articleNo=157554&article.offset=0&articleLimit=10',
+            'date': '12:00~13:00'},
+           {'id': 160,
+            'category': '[일반]',
+            'title': '[채용/모집][Co-op][(주) 올워크] 현장실습기관 소개',
+            'url': 'https://stat.skku.edu/stat/community/under_notice.do?mode=view&articleNo=157650&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 161,
+            'category': '[일반]',
+            'title': '[채용/모집][넥슨코리아] 게임보안 채용형 인턴십 모집 (~6/12)',
+            'url': 'https://stat.skku.edu/stat/community/under_notice.do?mode=view&articleNo=157606&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 162,
+            'category': '[일반]',
+            'title': '[장학][통계학과] 2023학년도 1학기 창의장학금 신청 안내 (~5/10)',
+            'url': 'https://stat.skku.edu/stat/community/under_notice.do?mode=view&articleNo=156166&article.offset=0&articleLimit=10',
+            'date': '5월 10일(수)'},
+           {'id': 163,
+            'category': '[일반]',
+            'title': '[채용/모집][삼성 청년 SW 아카데미] 10기 교육생 모집 (~5/8)',
+            'url': 'https://stat.skku.edu/stat/community/under_notice.do?mode=view&articleNo=155470&article.offset=0&articleLimit=10',
+            'date': '2023년4월24일(월)'},
+           {'id': 164,
+            'category': '[일반]',
+            'title': '[학사][통계학과] 신규 AI품 인정 전공과목 안내',
+            'url': 'https://stat.skku.edu/stat/community/under_notice.do?mode=view&articleNo=155369&article.offset=0&articleLimit=10',
+            'date': '2023.04.19.'},
+           {'id': 165,
+            'category': '[일반]',
+            'title': '[채용/모집][SBS] 2023년 상반기 신입사원 공개채용 (경영,미디어엔지니어) (~4/4)',
+            'url': 'https://stat.skku.edu/stat/community/under_notice.do?mode=view&articleNo=149051&article.offset=0&articleLimit=10',
+            'date': '4/23(일)'}
+            ]
+
+            // noticeData를 사용하여 공지사항 생성
+            for (const notice of noticeData) {
+                const { id, category, title, url, date } = notice;
+                const noticeEl = createNoticeElement(category, title, date, url, id);
+                noticeListEl.appendChild(noticeEl);
+            }
+
+            // 하트 클릭 이벤트 리스너 등록
+            const hearts = document.querySelectorAll('.heart span');
+            hearts.forEach((heart) => {
+                heart.addEventListener('click', handleHeartClick);
+            });
+
+
+            // 하트 클릭 이벤트 핸들러
+            function handleHeartClick(event) {
+                const clickedHeart = event.target;
+                const noticeId = clickedHeart.dataset.noticeId;
+                const notice = noticeData.find((item) => item.id === parseInt(noticeId));
+            
+                // 하트 상태 변경
+                clickedHeart.textContent = '❤️';
+                clickedHeart.removeEventListener('click', handleHeartClick);
+            
+                // 다른 웹사이트에 공지사항 내용 전달
+                sendNoticeToOtherWebsite(notice);
+            }
+            
+
+            
+            // 다른 웹사이트에 공지사항 내용 전달하는 함수
+            function sendNoticeToOtherWebsite(notice) {
+                const url = 'http://localhost:3000/save-notice';
+            
+                const data = {
+                notice: notice
+                };
+            
+                const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+                };
+            
+                fetch(url, options)
+                .then((response) => {
+                    if (response.ok) {
+                    console.log('공지가 성공적으로 저장되었습니다.');
+                    } else {
+                    console.log('공지 저장에 실패했습니다.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('공지 저장 중 오류가 발생했습니다.', error);
+                });
+            }
+
+        </script>
+    </body>
+
+    
+</html>

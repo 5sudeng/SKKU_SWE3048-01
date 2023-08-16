@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>건설환경공학부</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="major.css">
+</head>
+<body style="background-color: #E6E6E6;">
+    <div class="wrap">
+        <!--제목 및 헤더-->
+        <header class="header" id="major_header">
+            <h1 class="title">건설환경공학부</h1>
+            <div class="header-icons">
+                <a class="header-icon home" id="home" href="main.html">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a class="header-icon" id="user" href="mypage.html">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+                <div class="clearfix"></div>
+            </header>
+
+            
+            <!--메인 공지사항-->
+            <section id="major_section">
+                <div class="notice_wrap">
+                    <ul id="notice_list"></ul>
+                </div>
+            </section>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function createNoticeElement(category, title, date, url, noticeId) {
+                const liEl = document.createElement('li');
+                liEl.classList.add('major_content');
+            
+                const dlEl = document.createElement('dl');
+                const dtEl = document.createElement('dt');
+            
+                const categorySpanEl = document.createElement('span');
+                categorySpanEl.classList.add('category');
+                categorySpanEl.textContent = category;
+            
+                const titleLinkEl = document.createElement('a');
+                titleLinkEl.href = url;
+                titleLinkEl.textContent = title;
+            
+                const ddEl = document.createElement('dd');
+                const ulEl = document.createElement('ul');
+                const liInnerEl = document.createElement('li');
+                liInnerEl.textContent = date;
+                liInnerEl.classList.add('date');
+            
+                const heartDivEl = document.createElement('div');
+                heartDivEl.classList.add('heart');
+            
+                const ulHeartEl = document.createElement('ul');
+                const liHeartEl = document.createElement('li');
+                const spanHeartEl = document.createElement('span');
+                spanHeartEl.textContent = '♡';
+                spanHeartEl.dataset.noticeId = noticeId; // 데이터셋에 공지사항 ID 저장
+            
+                liHeartEl.appendChild(spanHeartEl);
+                ulHeartEl.appendChild(liHeartEl);
+                heartDivEl.appendChild(ulHeartEl);
+            
+                dtEl.appendChild(categorySpanEl);
+                dtEl.appendChild(titleLinkEl);
+            
+                ulEl.appendChild(liInnerEl);
+                ddEl.appendChild(ulEl);
+            
+                dlEl.appendChild(dtEl);
+                dlEl.appendChild(ddEl);
+            
+                liEl.appendChild(dlEl);
+                liEl.appendChild(heartDivEl);
+            
+                return liEl;
+            }
+            
+            const noticeListEl = document.querySelector('#notice_list');
+
+            // JSON 파일 이름
+            const noticeData = [
+            {'id': 691,
+            'category': '일반',
+            'title': '(~6.4.) [캠퍼스아시아] 2023 CAMPUS Asia - Hybrid Academic Exchange Program 참여 학생 모집 공고',
+            'url': 'http://cal.skku.edu/index.php?page=view&pg=&idx=742&hCode=BOARD&bo_idx=17&sfl=&stx=&category=',
+            'date': '2023년8월23일(약6주)'},
+           {'id': 692,
+            'category': '일반',
+            'title': '(6.5~) 자과캠 신축공사에 따른 교통 통제 및 버스 승하차장 이전 안내',
+            'url': 'http://cal.skku.edu/index.php?page=view&pg=&idx=741&hCode=BOARD&bo_idx=17&sfl=&stx=&category=',
+            'date': '2023.06.05.'},
+           {'id': 693,
+            'category': '일반',
+            'title': '(6.5~6.21) 2023-2학기 성적우수장학 신청 안내',
+            'url': 'http://cal.skku.edu/index.php?page=view&pg=&idx=740&hCode=BOARD&bo_idx=17&sfl=&stx=&category=',
+            'date': '2023.06.05.'},
+           {'id': 694,
+            'category': '일반',
+            'title': '(6.2~6.9) 그린리모델링 서포터즈 3기 모집',
+            'url': 'http://cal.skku.edu/index.php?page=view&pg=&idx=739&hCode=BOARD&bo_idx=17&sfl=&stx=&category=',
+            'date': '2023년 6월 2일'},
+           {'id': 695,
+            'category': '일반',
+            'title': '(6.2) [현대건설] 시공사 취업 및 수행업무 소개(현직자 세미나)',
+            'url': 'http://cal.skku.edu/index.php?page=view&pg=&idx=737&hCode=BOARD&bo_idx=17&sfl=&stx=&category=',
+            'date': '2023.06.02.'},
+           {'id': 696,
+            'category': '일반',
+            'title': '(~6.19) [포스코이앤씨] 2023 신입사원 채용(런치 채용설명회 & 온라인 취업멘토링)',
+            'url': 'http://cal.skku.edu/index.php?page=view&pg=&idx=736&hCode=BOARD&bo_idx=17&sfl=&stx=&category=',
+            'date': '12:00~13:30'},
+           {'id': 697,
+            'category': '일반',
+            'title': '(~8.28) [공모전] 2023년 제19회 건축구조 경진대회',
+            'url': 'http://cal.skku.edu/index.php?page=view&pg=&idx=734&hCode=BOARD&bo_idx=17&sfl=&stx=&category=',
+            'date': '2023.09.18.'},
+           {'id': 698,
+            'category': '일반',
+            'title': '(~6.7) [두산에너빌리티(구. 두산중공업)] 2023 채용연계형 인턴 대규모 채)',
+            'url': 'http://cal.skku.edu/index.php?page=view&pg=&idx=733&hCode=BOARD&bo_idx=17&sfl=&stx=&category=',
+            'date': '2023-05-22'}
+            ]
+
+            // noticeData를 사용하여 공지사항 생성
+            for (const notice of noticeData) {
+                const { id, category, title, url, date } = notice;
+                const noticeEl = createNoticeElement(category, title, date, url, id);
+                noticeListEl.appendChild(noticeEl);
+            }
+
+            // 하트 클릭 이벤트 리스너 등록
+            const hearts = document.querySelectorAll('.heart span');
+            hearts.forEach((heart) => {
+                heart.addEventListener('click', handleHeartClick);
+            });
+
+
+            // 하트 클릭 이벤트 핸들러
+            function handleHeartClick(event) {
+                const clickedHeart = event.target;
+                const noticeId = clickedHeart.dataset.noticeId;
+                const notice = noticeData.find((item) => item.id === parseInt(noticeId));
+            
+                // 하트 상태 변경
+                clickedHeart.textContent = '❤️';
+                clickedHeart.removeEventListener('click', handleHeartClick);
+            
+                // 다른 웹사이트에 공지사항 내용 전달
+                sendNoticeToOtherWebsite(notice);
+            }
+            
+
+            
+            // 다른 웹사이트에 공지사항 내용 전달하는 함수
+            function sendNoticeToOtherWebsite(notice) {
+                const url = 'http://localhost:3000/save-notice';
+            
+                const data = {
+                notice: notice
+                };
+            
+                const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+                };
+            
+                fetch(url, options)
+                .then((response) => {
+                    if (response.ok) {
+                    console.log('공지가 성공적으로 저장되었습니다.');
+                    } else {
+                    console.log('공지 저장에 실패했습니다.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('공지 저장 중 오류가 발생했습니다.', error);
+                });
+            }
+
+        </script>
+    </body>
+
+    
+</html>

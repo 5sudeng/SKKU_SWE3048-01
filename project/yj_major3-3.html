@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>데이터사이언스융합전공</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="major.css">
+</head>
+<body style="background-color: #E6E6E6;">
+    <div class="wrap">
+        <!--제목 및 헤더-->
+        <header class="header" id="major_header">
+            <h1 class="title">데이터사이언스융합전공</h1>
+            <div class="header-icons">
+                <a class="header-icon home" id="home" href="main.html">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a class="header-icon" id="user" href="mypage.html">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+                <div class="clearfix"></div>
+            </header>
+
+            
+            <!--메인 공지사항-->
+            <section id="major_section">
+                <div class="notice_wrap">
+                    <ul id="notice_list"></ul>
+                </div>
+            </section>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function createNoticeElement(category, title, date, url, noticeId) {
+                const liEl = document.createElement('li');
+                liEl.classList.add('major_content');
+            
+                const dlEl = document.createElement('dl');
+                const dtEl = document.createElement('dt');
+            
+                const categorySpanEl = document.createElement('span');
+                categorySpanEl.classList.add('category');
+                categorySpanEl.textContent = category;
+            
+                const titleLinkEl = document.createElement('a');
+                titleLinkEl.href = url;
+                titleLinkEl.textContent = title;
+            
+                const ddEl = document.createElement('dd');
+                const ulEl = document.createElement('ul');
+                const liInnerEl = document.createElement('li');
+                liInnerEl.textContent = date;
+                liInnerEl.classList.add('date');
+            
+                const heartDivEl = document.createElement('div');
+                heartDivEl.classList.add('heart');
+            
+                const ulHeartEl = document.createElement('ul');
+                const liHeartEl = document.createElement('li');
+                const spanHeartEl = document.createElement('span');
+                spanHeartEl.textContent = '♡';
+                spanHeartEl.dataset.noticeId = noticeId; // 데이터셋에 공지사항 ID 저장
+            
+                liHeartEl.appendChild(spanHeartEl);
+                ulHeartEl.appendChild(liHeartEl);
+                heartDivEl.appendChild(ulHeartEl);
+            
+                dtEl.appendChild(categorySpanEl);
+                dtEl.appendChild(titleLinkEl);
+            
+                ulEl.appendChild(liInnerEl);
+                ddEl.appendChild(ulEl);
+            
+                dlEl.appendChild(dtEl);
+                dlEl.appendChild(ddEl);
+            
+                liEl.appendChild(dlEl);
+                liEl.appendChild(heartDivEl);
+            
+                return liEl;
+            }
+            
+            const noticeListEl = document.querySelector('#notice_list');
+
+            // JSON 파일 이름
+            const noticeData = [
+            {'id': 621,
+            'category': "",
+            'title': '2023-1학기 데이터사이언스융합전공 학생자치 스터디그룹 모집',
+            'url': 'https://sco.skku.edu/sco/community/major_data.do?mode=view&articleNo=155316&article.offset=0&articleLimit=10',
+            'date': '2023. 4. 18.(화) ~ 2023. 4. 24.(월)'},
+           {'id': 622,
+            'category': "",
+            'title': '2023-1학기 글로벌융합학부 데이터사이언스융합전공 학생자치 학술동아리·학회 모집',
+            'url': 'https://sco.skku.edu/sco/community/major_data.do?mode=view&articleNo=147952&article.offset=0&articleLimit=10',
+            'date': '2023. 3. 9.(목) ~ 2023. 3. 17.(금)'},
+           {'id': 623,
+            'category': "",
+            'title': '2023학년도 1학기 데이터사이언스융합전공  데이터사이언스와 R 강의 TA 모집',
+            'url': 'https://sco.skku.edu/sco/community/major_data.do?mode=view&articleNo=147797&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 624,
+            'category': "",
+            'title': '2023-1학기 직권배정 신청 안내',
+            'url': 'https://sco.skku.edu/sco/community/major_data.do?mode=view&articleNo=144359&article.offset=0&articleLimit=10',
+            'date': '1/31(화)'},
+           {'id': 625,
+            'category': "",
+            'title': '2022학년도 동계 데이터사이언스융합전공 데이터사이언스 진로 탐색 캠프',
+            'url': 'https://sco.skku.edu/sco/community/major_data.do?mode=view&articleNo=142443&article.offset=0&articleLimit=10',
+            'date': '2022.12.01.'},
+           {'id': 626,
+            'category': "",
+            'title': '2022-2학기 글로벌캠프 면접 일정 및 순서 안내(최종 확정)',
+            'url': 'https://sco.skku.edu/sco/community/major_data.do?mode=view&articleNo=141129&article.offset=0&articleLimit=10',
+            'date': '10월26일(수)'},
+           {'id': 627,
+            'category': "",
+            'title': '2022-2학기 글로벌캠프 면접 일정 및 순서 안내',
+            'url': 'https://sco.skku.edu/sco/community/major_data.do?mode=view&articleNo=141048&article.offset=0&articleLimit=10',
+            'date': '10월26일(수)'},
+           {'id': 628,
+            'category': "",
+            'title': '2022년 동계방학 글로벌 캠프 참가자 선발 공고',
+            'url': 'https://sco.skku.edu/sco/community/major_data.do?mode=view&articleNo=140314&article.offset=0&articleLimit=10',
+            'date': '2023.01.09.'}
+            ]
+
+            // noticeData를 사용하여 공지사항 생성
+            for (const notice of noticeData) {
+                const { id, category, title, url, date } = notice;
+                const noticeEl = createNoticeElement(category, title, date, url, id);
+                noticeListEl.appendChild(noticeEl);
+            }
+
+            // 하트 클릭 이벤트 리스너 등록
+            const hearts = document.querySelectorAll('.heart span');
+            hearts.forEach((heart) => {
+                heart.addEventListener('click', handleHeartClick);
+            });
+
+
+            // 하트 클릭 이벤트 핸들러
+            function handleHeartClick(event) {
+                const clickedHeart = event.target;
+                const noticeId = clickedHeart.dataset.noticeId;
+                const notice = noticeData.find((item) => item.id === parseInt(noticeId));
+            
+                // 하트 상태 변경
+                clickedHeart.textContent = '❤️';
+                clickedHeart.removeEventListener('click', handleHeartClick);
+            
+                // 다른 웹사이트에 공지사항 내용 전달
+                sendNoticeToOtherWebsite(notice);
+            }
+            
+
+            
+            // 다른 웹사이트에 공지사항 내용 전달하는 함수
+            function sendNoticeToOtherWebsite(notice) {
+                const url = 'http://localhost:3000/save-notice';
+            
+                const data = {
+                notice: notice
+                };
+            
+                const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+                };
+            
+                fetch(url, options)
+                .then((response) => {
+                    if (response.ok) {
+                    console.log('공지가 성공적으로 저장되었습니다.');
+                    } else {
+                    console.log('공지 저장에 실패했습니다.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('공지 저장 중 오류가 발생했습니다.', error);
+                });
+            }
+
+        </script>
+    </body>
+
+    
+</html>

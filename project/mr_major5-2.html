@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>정치외교학과</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="major.css">
+</head>
+<body style="background-color: #E6E6E6;">
+    <div class="wrap">
+        <!--제목 및 헤더-->
+        <header class="header" id="major_header">
+            <h1 class="title">정치외교학과</h1>
+            <div class="header-icons">
+                <a class="header-icon home" id="home" href="main.html">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a class="header-icon" id="user" href="mypage.html">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+                <div class="clearfix"></div>
+            </header>
+
+            
+            <!--메인 공지사항-->
+            <section id="major_section">
+                <div class="notice_wrap">
+                    <ul id="notice_list"></ul>
+                </div>
+            </section>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function createNoticeElement(category, title, date, url, noticeId) {
+                const liEl = document.createElement('li');
+                liEl.classList.add('major_content');
+            
+                const dlEl = document.createElement('dl');
+                const dtEl = document.createElement('dt');
+            
+                const categorySpanEl = document.createElement('span');
+                categorySpanEl.classList.add('category');
+                categorySpanEl.textContent = category;
+            
+                const titleLinkEl = document.createElement('a');
+                titleLinkEl.href = url;
+                titleLinkEl.textContent = title;
+            
+                const ddEl = document.createElement('dd');
+                const ulEl = document.createElement('ul');
+                const liInnerEl = document.createElement('li');
+                liInnerEl.textContent = date;
+                liInnerEl.classList.add('date');
+            
+                const heartDivEl = document.createElement('div');
+                heartDivEl.classList.add('heart');
+            
+                const ulHeartEl = document.createElement('ul');
+                const liHeartEl = document.createElement('li');
+                const spanHeartEl = document.createElement('span');
+                spanHeartEl.textContent = '♡';
+                spanHeartEl.dataset.noticeId = noticeId; // 데이터셋에 공지사항 ID 저장
+            
+                liHeartEl.appendChild(spanHeartEl);
+                ulHeartEl.appendChild(liHeartEl);
+                heartDivEl.appendChild(ulHeartEl);
+            
+                dtEl.appendChild(categorySpanEl);
+                dtEl.appendChild(titleLinkEl);
+            
+                ulEl.appendChild(liInnerEl);
+                ddEl.appendChild(ulEl);
+            
+                dlEl.appendChild(dtEl);
+                dlEl.appendChild(ddEl);
+            
+                liEl.appendChild(dlEl);
+                liEl.appendChild(heartDivEl);
+            
+                return liEl;
+            }
+            
+            const noticeListEl = document.querySelector('#notice_list');
+
+            // JSON 파일 이름
+            const noticeData = [
+            {'id': 231,
+            'category': '[행사/세미나]',
+            'title': "[행사/세미나]Dean Dulay 교수(Singapore Management University) 초청특강 : 'Sorry Not Sorry'",
+            'url': 'https://skb.skku.edu/psd/notice.do?mode=view&articleNo=157562&article.offset=0&articleLimit=10',
+            'date': '2023년 6월 7일'},
+           {'id': 232,
+            'category': '[행사/세미나]',
+            'title': '[행사/세미나]2023년도 한중일 3국 협력 사무국(TCS) 청년모의정상회의 참가자 모집',
+            'url': 'https://skb.skku.edu/psd/notice.do?mode=view&articleNo=157485&article.offset=0&articleLimit=10',
+            'date': '2023년 8월 13일'},
+           {'id': 233,
+            'category': '[행사/세미나]',
+            'title': '[행사/세미나][주한 미국대사관] "Diplomats In Action" (주한미국대사관 외교관과의 대화)',
+            'url': 'https://skb.skku.edu/psd/notice.do?mode=view&articleNo=157456&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 234,
+            'category': '[행사/세미나]',
+            'title': '[학사]2023학년도 하계 우수학부생 연구학점제 시행 안내',
+            'url': 'https://skb.skku.edu/psd/notice.do?mode=view&articleNo=157424&article.offset=0&articleLimit=10',
+            'date': '2023. 5. 24.(수) ~ 2023. 5. 31.(수)'},
+           {'id': 235,
+            'category': '[행사/세미나]',
+            'title': "[행사/세미나]Jonathan Chu 교수(National University of Singapore) 초청특강 : 'Does Democracy Matter to the People?'",
+            'url': 'https://skb.skku.edu/psd/notice.do?mode=view&articleNo=157084&article.offset=0&articleLimit=10',
+            'date': '2023년 6월 2일'},
+           {'id': 236,
+            'category': '[행사/세미나]',
+            'title': '[행사/세미나]성균중국연구소 주관  명사특강 : 한중관계의 현재와 미래',
+            'url': 'https://skb.skku.edu/psd/notice.do?mode=view&articleNo=156691&article.offset=0&articleLimit=10',
+            'date': '2023년 5월 19일'},
+           {'id': 237,
+            'category': '[행사/세미나]',
+            'title': '[채용/모집][주한미국대사관] American Diplomacy House Academy 프로그램 참가자 모집',
+            'url': 'https://skb.skku.edu/psd/notice.do?mode=view&articleNo=156390&article.offset=0&articleLimit=10',
+            'date': ""},
+           {'id': 238,
+            'category': '[행사/세미나]',
+            'title': '[행사/세미나]국립외교원 외교안보연구소「한미일 3국 협력 공개 회의」',
+            'url': 'https://skb.skku.edu/psd/notice.do?mode=view&articleNo=156227&article.offset=0&articleLimit=10',
+            'date': ""}
+            ]
+
+            // noticeData를 사용하여 공지사항 생성
+            for (const notice of noticeData) {
+                const { id, category, title, url, date } = notice;
+                const noticeEl = createNoticeElement(category, title, date, url, id);
+                noticeListEl.appendChild(noticeEl);
+            }
+
+            // 하트 클릭 이벤트 리스너 등록
+            const hearts = document.querySelectorAll('.heart span');
+            hearts.forEach((heart) => {
+                heart.addEventListener('click', handleHeartClick);
+            });
+
+
+            // 하트 클릭 이벤트 핸들러
+            function handleHeartClick(event) {
+                const clickedHeart = event.target;
+                const noticeId = clickedHeart.dataset.noticeId;
+                const notice = noticeData.find((item) => item.id === parseInt(noticeId));
+            
+                // 하트 상태 변경
+                clickedHeart.textContent = '❤️';
+                clickedHeart.removeEventListener('click', handleHeartClick);
+            
+                // 다른 웹사이트에 공지사항 내용 전달
+                sendNoticeToOtherWebsite(notice);
+            }
+            
+
+            
+            // 다른 웹사이트에 공지사항 내용 전달하는 함수
+            function sendNoticeToOtherWebsite(notice) {
+                const url = 'http://localhost:3000/save-notice';
+            
+                const data = {
+                notice: notice
+                };
+            
+                const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+                };
+            
+                fetch(url, options)
+                .then((response) => {
+                    if (response.ok) {
+                    console.log('공지가 성공적으로 저장되었습니다.');
+                    } else {
+                    console.log('공지 저장에 실패했습니다.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('공지 저장 중 오류가 발생했습니다.', error);
+                });
+            }
+
+        </script>
+    </body>
+
+    
+</html>

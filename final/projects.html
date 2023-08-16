@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Projects</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .section {
+    overflow: hidden;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.outer-menu-item').hover(function () {
+        $(this).find('.inner-menu').show();
+      }, function () {
+        $(this).find('.inner-menu').hide();
+      });
+    });
+      $(document).ready(function() {
+      function setMaxHeight() {
+        var sections = $(".project-section"); // .project-section 클래스를 가진 요소들을 선택
+        var maxHeight = 0;
+
+        sections.each(function() {
+          var sectionHeight = $(this).outerHeight(); // 각 섹션의 높이를 가져옴
+          if (sectionHeight > maxHeight) {
+            maxHeight = sectionHeight; // 가장 큰 높이를 찾음
+          }
+        });
+
+        sections.css("height", maxHeight + "px"); // 모든 섹션의 높이를 최대 높이로 설정
+      }
+
+      setMaxHeight(); // 페이지 로드 시 최대 높이 설정 함수를 호출
+
+      $(window).resize(function() {
+        setMaxHeight(); // 윈도우 크기가 변경될 때마다 최대 높이 설정 함수를 호출
+      });
+    });
+  </script>
+</head>
+<body>
+  <header id="main-header">
+    <h1 class="header-title"><a href="home.html" style="text-decoration: none; color: white">SUJEONG OH</a></h1>
+    <p class="header-subtitle"><a href="home.html" style="text-decoration: none; color: white">Artificial Intelligence Student</a></p>
+  </header>
+  <nav id="main-navigation">
+    <ul class="nav-menu">
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="home.html">Home</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="home.html#home-main-section">About Me</a></li>
+          <li class="inner-menu-item"><a href="home.html#main-aside">Skills</a></li>
+        </ul>
+      </li>
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="courses.html">Courses</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="courses.html#main-section1">Course 1</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section2">Course 2</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section3">Course 3</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section4">Course 4</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section5">Course 5</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section6">Course 6</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section7">Course 7</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section8">Course 8</a></li>
+        </ul>
+      </li>
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="projects.html">Projects</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="projects.html#main-section1">Project 1</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section2">Project 2</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section3">Project 3</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section4">Project 4</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section5">Project 5</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section6">Project 6</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section7">Project 7</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section8">Project 8</a></li>
+        </ul>
+      </li>
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="contact.html">Contact</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="contact.html#contact-section">contact</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div id="m-content">
+    <section class="project-section" id="main-section1">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">Dance Similarity Project</p>
+        <p>The Dance Similarity Project is a machine learning-based project that aims to analyze and compare dance movements from various dance genres. By using computer vision techniques and deep learning algorithms, the project extracts key features from dance videos and performs similarity analysis to identify similar dance styles. The project contributes to the field of dance research and provides insights for choreographers and dancers.
+        </p>
+      </section>
+      <section class="project-section" id="main-section2">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">Electronical Board Project</p>
+        <p>The Electronical Board Project focuses on developing an electronic circuit board with advanced functionalities. The project involves designing and prototyping the board, integrating various electronic components, and programming its features. The Electronical Board Project aims to provide a versatile platform for electronic experiments and projects, enabling enthusiasts to explore and create innovative electronic systems.
+        </p>
+      </section>
+      <section class="project-section" id="main-section3">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">Yoga Pose Classification</p>
+        <p>The Yoga Pose Classification project utilizes machine learning techniques to classify different yoga poses based on input images or videos. By training a deep neural network on a labeled dataset of yoga poses, the project can accurately identify and categorize various yoga postures. The Yoga Pose Classification project can be used in applications such as yoga tutorial platforms, fitness tracking apps, and posture correction systems.
+        </p>
+      </section>
+      <section class="project-section" id="main-section4">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">Mini Game Project using JAVA</p>
+        <p>The Mini Game Project using JAVA is a software development project that involves creating a collection of small, interactive games using the Java programming language. Each game offers unique gameplay mechanics and challenges, providing entertainment and opportunities for users to practice their problem-solving skills. The project demonstrates proficiency in Java programming and software development principles.
+        </p>
+      </section>
+      <section class="project-section" id="main-section5">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">Notice Collection Web</p>
+        <p>The Notice Collection Web project is a web application that gathers and displays notices and announcements from various sources. It utilizes web scraping techniques to extract information from targeted websites and presents the collected notices in a user-friendly interface. The Notice Collection Web project aims to simplify the process of staying informed about important updates and announcements from different organizations or institutions.
+        </p>
+      </section>
+      <section class="project-section" id="main-section6">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">--</p>
+      </section>
+      <section class="project-section" id="main-section7">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">--</p>
+      </section>
+      <section class="project-section" id="main-section8">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">--</p>
+      </section>
+  </div>
+  <footer id="main-footer">
+    &copy; Created By Sujeong Oh
+  </footer>
+</body>
+</html>

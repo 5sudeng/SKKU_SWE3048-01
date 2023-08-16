@@ -1,0 +1,182 @@
+/* Header styles */
+#main-header {
+    text-align: center;
+}
+
+/* Reset styles */
+body,
+html,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header styles */
+#main-header {
+  background-color: #333;
+  padding: 20px;
+  color: #fff;
+}
+
+.master-title {
+  font-size: 36px;
+  margin: 0;
+}
+
+.master-description {
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Navigation styles */
+#main-navigation {
+  background-color: #333;
+  padding: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.outer-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.outer-menu-item {
+  margin-right: 20px;
+}
+
+.menu-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.menu-title:hover {
+  color: #f5f5f5;
+}
+
+.inner-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  background-color: #333;
+  padding: 10px;
+  display: none;
+}
+
+.inner-menu-item {
+  margin-bottom: 5px;
+}
+
+.inner-menu-item a {
+  color: #f5f5f5;
+  text-decoration: none;
+}
+
+.inner-menu-item a:hover {
+  color: #ddd;
+}
+
+.outer-menu-item:hover .inner-menu {
+  display: block;
+}
+
+/* Content styles */
+#content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#main-section {
+  flex: 2;
+  margin-right: 20px;
+}
+
+.article-title {
+  font-size: 28px;
+  margin: 0;
+  color: #333;
+}
+
+.article-date {
+  font-size: 14px;
+  color: #888;
+  margin-top: 5px;
+}
+
+.article-body {
+  margin-top: 20px;
+  color: #555;
+}
+
+/* Sidebar styles */
+#main-aside {
+  flex: 1;
+}
+
+.aside-list {
+  margin-bottom: 20px;
+}
+
+.aside-list h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.aside-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.aside-list li {
+  margin-bottom: 5px;
+}
+
+.aside-list li a {
+  color: #555;
+  text-decoration: none;
+}
+
+.aside-list li a:hover {
+  color: #333;
+}
+
+/* Footer styles */
+#main-footer {
+  background-color: #333;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+#main-footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#main-footer a:hover {
+  color: #f5f5f5;
+}

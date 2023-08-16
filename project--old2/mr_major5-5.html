@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>사회복지학과</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #E6E6E6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: black;
+            text-align: center;
+        }
+
+        .wrap a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .wrap a:hover{
+            text-decoration: underline;
+        }
+        .title {position: absolute; left: 2%; top: 0.5%; }
+
+        .my {float: right;}
+
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 20px;
+            padding-top: 0px;
+            padding-bottom: 0%;
+            margin-bottom: 0%;
+        }
+
+        .header-icons {
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-icon {
+            font-size: 24px;
+            color: #fff;
+            background-color: darkgray;
+            padding: 10px;
+            border-radius: 80%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        #user {
+            padding: 10px 13px 10px 13px;
+        }
+
+        .header-icon:hover {
+            background-color: #4D8076;
+        }
+
+        #notice_list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .major_content {
+            width: calc(40% - 10px);
+            display: flex;
+            background-color: white;
+            border: 1px solid black; 
+            border-radius: 30px;
+            align-items: center;
+            margin: 3% auto;
+            margin-left: 10px;
+            padding : 3%;
+        }
+
+        .major_content dl {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 10px;
+        }
+
+        .major_content dl {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .major_content .heart {
+            flex: 0 0 auto;
+        }
+
+        .major_content dl,
+        .major_content .heart ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .major_content .heart {
+            margin-right: 25px;
+        }
+
+        .major_content dl>dd>ul {
+            list-style-type: none;
+        }
+            
+        .major_content .category {
+            margin-right: 10px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body style="background-color: #E6E6E6;">
+    <div class="wrap">
+        <!--제목 및 헤더-->
+        <header class="header" id="major_header">
+            <h1 class="title">사회복지학과</h1>
+            <div class="header-icons">
+                <a class="header-icon home" id="home" href="main.html">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a class="header-icon" id="user" href="mypage.html">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+                <div class="clearfix"></div>
+            </header>
+
+            
+            <!--메인 공지사항-->
+            <section id="major_section">
+                <div class="notice_wrap">
+                    <ul id="notice_list"></ul>
+                </div>
+            </section>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function createNoticeElement(category, title, date, url, noticeId) {
+                const liEl = document.createElement('li');
+                liEl.classList.add('major_content');
+            
+                const dlEl = document.createElement('dl');
+                const dtEl = document.createElement('dt');
+            
+                const categorySpanEl = document.createElement('span');
+                categorySpanEl.classList.add('category');
+                categorySpanEl.textContent = category;
+            
+                const titleLinkEl = document.createElement('a');
+                titleLinkEl.href = url;
+                titleLinkEl.textContent = title;
+            
+                const ddEl = document.createElement('dd');
+                const ulEl = document.createElement('ul');
+                const liInnerEl = document.createElement('li');
+                liInnerEl.textContent = date;
+            
+                const heartDivEl = document.createElement('div');
+                heartDivEl.classList.add('heart');
+            
+                const ulHeartEl = document.createElement('ul');
+                const liHeartEl = document.createElement('li');
+                const spanHeartEl = document.createElement('span');
+                spanHeartEl.textContent = '♡';
+                spanHeartEl.dataset.noticeId = noticeId; // 데이터셋에 공지사항 ID 저장
+            
+                liHeartEl.appendChild(spanHeartEl);
+                ulHeartEl.appendChild(liHeartEl);
+                heartDivEl.appendChild(ulHeartEl);
+            
+                dtEl.appendChild(categorySpanEl);
+                dtEl.appendChild(titleLinkEl);
+            
+                ulEl.appendChild(liInnerEl);
+                ddEl.appendChild(ulEl);
+            
+                dlEl.appendChild(dtEl);
+                dlEl.appendChild(ddEl);
+            
+                liEl.appendChild(dlEl);
+                liEl.appendChild(heartDivEl);
+            
+                return liEl;
+            }
+            
+            const noticeListEl = document.querySelector('#notice_list');
+
+            // JSON 파일 이름
+            const noticeData = [
+                {
+                    "id": 1,
+                    "category": "행사/세미나",
+                    "title": "데이터사이언스개론 특강 안내",
+                    "url": "https://sco.skku.edu/sco/community/notice.do?mode=view&articleNo=156530&article.offset=0&articleLimit=10",
+                    "date": "5.11(목) / 5.18(목) 오전 10:30~11:45"
+                },
+                {
+                    "id": 2,
+                    "category": "채용/모집",
+                    "title": "2023 펄어비스 채용연계형 인턴십",
+                    "url": "https://sco.skku.edu/sco/community/notice.do?mode=view&articleNo=157090&article.offset=0&articleLimit=10",
+                    "date": "4.24(월) ~ 5.14(일)"
+                },
+                {
+                    "id": 3,
+                    "category": "채용/모집",
+                    "title": "부스트코스 모집 안내",
+                    "url": "https://sco.skku.edu/sco/community/notice.do?mode=view&articleNo=157090&article.offset=0&articleLimit=10",
+                    "date": "~4.20(목)"
+                },
+                {
+                    "id": 4,
+                    "category": "행사/세미나",
+                    "title": "마이크로리디 설명회 안내",
+                    "url": "https://sco.skku.edu/sco/community/notice.do?mode=view&articleNo=157090&article.offset=0&articleLimit=10",
+                    "date": "04.13(목)"
+                },
+                {
+                    "id": 5,
+                    "category": "학사",
+                    "title": "2023-2학기 복수전공 사전심사 신청 안내",
+                    "url": "https://sco.skku.edu/sco/community/notice.do?mode=view&articleNo=155547&article.offset=0&articleLimit=10",
+                    "date": "6.21(수) ~ 6.28(수)"
+                },
+                {
+                    "id": 6,
+                    "category": "채용/모집",
+                    "title": "2023학년도 1학기 AI기초와활용 TA 모집",
+                    "url": "https://sco.skku.edu/sco/community/notice.do?mode=view&articleNo=157090&article.offset=0&articleLimit=10",
+                    "date": "미정"
+                }
+            ]
+
+            // noticeData를 사용하여 공지사항 생성
+            for (const notice of noticeData) {
+                const { id, category, title, url, date } = notice;
+                const noticeEl = createNoticeElement(category, title, date, url, id);
+                noticeListEl.appendChild(noticeEl);
+            }
+
+            // 하트 클릭 이벤트 리스너 등록
+            const hearts = document.querySelectorAll('.heart span');
+            hearts.forEach((heart) => {
+                heart.addEventListener('click', handleHeartClick);
+            });
+
+
+            // 하트 클릭 이벤트 핸들러
+            function handleHeartClick(event) {
+                const clickedHeart = event.target;
+                const noticeId = clickedHeart.dataset.noticeId;
+                const notice = noticeData.find((item) => item.id === parseInt(noticeId));
+            
+                // 하트 상태 변경
+                clickedHeart.textContent = '❤️';
+                clickedHeart.removeEventListener('click', handleHeartClick);
+            
+                // 다른 웹사이트에 공지사항 내용 전달
+                sendNoticeToOtherWebsite(notice);
+            }
+            
+
+            
+            // 다른 웹사이트에 공지사항 내용 전달하는 함수
+            function sendNoticeToOtherWebsite(notice) {
+                const url = 'http://localhost:3000/save-notice';
+            
+                const data = {
+                notice: notice
+                };
+            
+                const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+                };
+            
+                fetch(url, options)
+                .then((response) => {
+                    if (response.ok) {
+                    console.log('공지가 성공적으로 저장되었습니다.');
+                    } else {
+                    console.log('공지 저장에 실패했습니다.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('공지 저장 중 오류가 발생했습니다.', error);
+                });
+            }
+
+        </script>
+    </body>
+
+    
+</html>

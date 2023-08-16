@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.outer-menu-item').hover(function () {
+        $(this).find('.inner-menu').show();
+      }, function () {
+        $(this).find('.inner-menu').hide();
+      });
+    });
+  </script>
+</head>
+<body>
+  <header id="main-header">
+    <h1 class="header-title"><a href="home.html" style="text-decoration: none; color: white">SUJEONG OH</a></h1>
+    <p class="header-subtitle"><a href="home.html" style="text-decoration: none; color: white">Artificial Intelligence Student</a></p>
+  </header>
+  <nav id="main-navigation">
+    <ul class="nav-menu">
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="home.html">Home</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="home.html#home-main-section">About Me</a></li>
+          <li class="inner-menu-item"><a href="home.html#main-aside">Skills</a></li>
+        </ul>
+      </li>
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="courses.html">Courses</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="courses.html#main-section1">Course 1</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section2">Course 2</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section3">Course 3</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section4">Course 4</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section5">Course 5</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section6">Course 6</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section7">Course 7</a></li>
+          <li class="inner-menu-item"><a href="courses.html#main-section8">Course 8</a></li>
+        </ul>
+      </li>
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="projects.html">Projects</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="projects.html#main-section1">Project 1</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section2">Project 2</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section3">Project 3</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section4">Project 4</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section5">Project 5</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section6">Project 6</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section7">Project 7</a></li>
+          <li class="inner-menu-item"><a href="projects.html#main-section8">Project 8</a></li>
+        </ul>
+      </li>
+      <li class="nav-item outer-menu-item">
+        <a class="nav-link" href="contact.html">Contact</a>
+        <ul class="inner-menu">
+          <li class="inner-menu-item"><a href="contact.html#contact-section">Contact</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div id="content">
+    
+    <aside id="contact-aside">
+      <ul class="aside-list">
+        <li class="aside-item">
+            <h3 class="contact-title">HighSchool</h3>
+            <p class="aside-info">Jeju Foreign Language HighSchool</p>
+        </li>
+        <li class="aside-item">
+            <h3 class="contact-title">University</h3>
+            <p class="aside-info">Sungkyunkwan University</p>
+        </li>
+        <li class="aside-item">
+            <h3 class="contact-title">Major</h3>
+            <p class="aside-info">Applied Artificial Intelligence</p>
+        </li>
+        <li class="aside-item">
+            <h3 class="contact-title">more info ---- (dummy data)</h3>
+            <p class="aside-info">more info ---- (dummy data)</p>
+        </li>
+        <li class="aside-item">
+            <h3 class="contact-title">more info ---- (dummy data)</h3>
+            <p class="aside-info">more info ---- (dummy data)</p>
+        </li>
+        <li class="aside-item">
+            <h3 class="contact-title">more info ---- (dummy data)</h3>
+            <p class="aside-info">more info ---- (dummy data)</p>
+        </li>
+      </ul>
+    </aside>
+    <section id="contact-section">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">Feel free to get in touch:</p>
+        <p>I am a 3rd-year AI major at Sungkyunkwan University. Through my studies, I have gained knowledge and skills in various areas such as machine learning, natural language processing, computer vision, and deep learning. I am passionate about using AI to solve real-world problems and improve people's lives.
+        </p>
+        <br/>
+        <ul class="contact-list">
+          <li class="contact-item">
+            <h3 class="contact-title">Email</h3>
+            <p class="contact-info">sudeng@g.skku.edu</p>
+          </li>
+          <br/>
+          <li class="contact-item">
+            <h3 class="contact-title">Phone</h3>
+            <p class="contact-info">010-9691-2347</p>
+          </li>
+          <br/>
+          <li class="contact-item">
+              <h3 class="contact-title">Address</h3>
+              <p class="contact-info">Seongbuk-gu, Seoul, Republic of Korea</p>
+            </li>
+        </ul>
+      </section>
+  </div>
+  <footer id="main-footer">
+    &copy; Created By Sujeong Oh
+  </footer>
+</body>
+</html>

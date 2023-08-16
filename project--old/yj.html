@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>자연과학캠퍼스</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<style>
+    body {
+        background-color: #E6E6E6;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .loc:hover {
+        background-color: #4D8076;
+    }
+
+    .ru {
+        color: black;
+    }
+
+    li > a {
+        color: black;
+    }
+
+    div > a {
+        color: white;
+    }
+
+    .header {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 20px;
+        padding-top: 0px;
+        padding-bottom: 0%;
+        margin-bottom: 0%;
+    }
+
+    .header-icons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .header-icon {
+        font-size: 24px;
+        color: #fff;
+        background-color: darkgray;
+        padding: 10px;
+        border-radius: 80%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+    }
+
+    #user {
+        padding: 10px 13px 10px 13px;
+    }
+
+    .header-icon:hover {
+        background-color: #4D8076;
+    }
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 85vh; 
+        margin-top: 2%;
+    }
+
+    .login-form {
+        background-color: #fff;
+        width: 80%;
+        border-radius: 10px;
+        margin-top: 0%;
+        padding: 20px;
+        padding-bottom: 0.1%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        color: #4D8076;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-field {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .college-container {
+        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .college {
+        border-radius: 40%;
+        width: 250px;
+        height: 250px;
+        background-color: #75a498;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 30px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+    }
+
+    .college:hover {
+        background-color: #4D8076;
+    }
+
+</style>
+<body>
+<div class="header">
+    <div class="header-icons">
+        <a class="header-icon home" id="home" href="main.html">
+            <i class="fas fa-home"></i>
+        </a>
+        <a class="header-icon" id="user" href="mypage.html">
+            <i class="fas fa-user"></i>
+        </a>
+    </div>
+</div>
+<div class="login-container">
+    <div class="login-form">
+        <div class="form-field">
+            <h1 style="margin-top: 0;">SELECT COLLEGE :</h1>
+            <div class="college-container">
+                <a class="college" href="yj_college1.html" id="col1">
+                    <p>자연과학대학</p>
+                </a>
+                <a class="college" href="yj_college2.html" id="col2">
+                    <p>정보통신대학</p>
+                </a>
+                <a class="college" href="yj_college3.html" id="col3">
+                    <p>소프트웨어<br/>융합대학</p>
+                </a>
+                <a class="college" href="yj_college4.html" id="col4">
+                    <p>공과대학</p>
+                </a>
+                <a class="college" href="yj_college5.html" id="col5">
+                    <p>약학/의학대학<br/>성균융합원</p>
+                </a>
+                <a class="college" href="yj_college6.html" id="col6">
+                    <p>생명공학<br/>/스포츠과학대학</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

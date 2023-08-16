@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>스포츠과학과</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="major.css">
+</head>
+<body style="background-color: #E6E6E6;">
+    <div class="wrap">
+        <!--제목 및 헤더-->
+        <header class="header" id="major_header">
+            <h1 class="title">스포츠과학과</h1>
+            <div class="header-icons">
+                <a class="header-icon home" id="home" href="main.html">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a class="header-icon" id="user" href="mypage.html">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+                <div class="clearfix"></div>
+            </header>
+
+            
+            <!--메인 공지사항-->
+            <section id="major_section">
+                <div class="notice_wrap">
+                    <ul id="notice_list"></ul>
+                </div>
+            </section>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function createNoticeElement(category, title, date, url, noticeId) {
+                const liEl = document.createElement('li');
+                liEl.classList.add('major_content');
+            
+                const dlEl = document.createElement('dl');
+                const dtEl = document.createElement('dt');
+            
+                const categorySpanEl = document.createElement('span');
+                categorySpanEl.classList.add('category');
+                categorySpanEl.textContent = category;
+            
+                const titleLinkEl = document.createElement('a');
+                titleLinkEl.href = url;
+                titleLinkEl.textContent = title;
+            
+                const ddEl = document.createElement('dd');
+                const ulEl = document.createElement('ul');
+                const liInnerEl = document.createElement('li');
+                liInnerEl.textContent = date;
+                liInnerEl.classList.add('date');
+            
+                const heartDivEl = document.createElement('div');
+                heartDivEl.classList.add('heart');
+            
+                const ulHeartEl = document.createElement('ul');
+                const liHeartEl = document.createElement('li');
+                const spanHeartEl = document.createElement('span');
+                spanHeartEl.textContent = '♡';
+                spanHeartEl.dataset.noticeId = noticeId; // 데이터셋에 공지사항 ID 저장
+            
+                liHeartEl.appendChild(spanHeartEl);
+                ulHeartEl.appendChild(liHeartEl);
+                heartDivEl.appendChild(ulHeartEl);
+            
+                dtEl.appendChild(categorySpanEl);
+                dtEl.appendChild(titleLinkEl);
+            
+                ulEl.appendChild(liInnerEl);
+                ddEl.appendChild(ulEl);
+            
+                dlEl.appendChild(dtEl);
+                dlEl.appendChild(ddEl);
+            
+                liEl.appendChild(dlEl);
+                liEl.appendChild(heartDivEl);
+            
+                return liEl;
+            }
+            
+            const noticeListEl = document.querySelector('#notice_list');
+
+            // JSON 파일 이름
+            const noticeData = [
+            {'id': 871,
+            'category': '[학사]',
+            'title': '2023년 8월 졸업예정자 교원자격무시험검정원서 제출 안내',
+            'url': 'https://sport.skku.edu/sports/community/under_notice.do?mode=view&link=http://app.skku.edu/emate_app/bbs/b1805133145.nsf/api/data/documents/unid/ACE49894BA54D70D492589BB002DB2AD?multipart=false&article.offset=0&articleLimit=10',
+            'date': '2023. 6. 19.(월) ~ 2023. 7. 7.(금)'},
+           {'id': 872,
+            'category': '[학사]',
+            'title': '2023-1학기 교육실습생 실습비 납부 안내',
+            'url': 'https://sport.skku.edu/sports/community/under_notice.do?mode=view&link=http://app.skku.edu/emate_app/bbs/b1805133145.nsf/api/data/documents/unid/AD0ADEE0A4BB7848492589BB000EAD32?multipart=false&article.offset=0&articleLimit=10',
+            'date': '5월 30일(화)'},
+           {'id': 873,
+            'category': '[학사]',
+            'title': '2023학년도 1학기 교육봉사활동(CFTD078) 증빙서류 제출 안내',
+            'url': 'https://sport.skku.edu/sports/community/under_notice.do?mode=view&link=http://app.skku.edu/emate_app/bbs/b1805133145.nsf/api/data/documents/unid/A74A14355DAB8AF8492589B1000BE9D7?multipart=false&article.offset=0&articleLimit=10',
+            'date': '2023.5.22.'},
+           {'id': 874,
+            'category': '[학사]',
+            'title': '(미)텍사스A＆M대학교 학술교류 행사 안내',
+            'url': 'https://sport.skku.edu/sports/community/under_notice.do?mode=view&link=http://app.skku.edu/emate_app/bbs/b1805133145.nsf/api/data/documents/unid/1B9867BFC7CD82D8492589AC004C7812?multipart=false&article.offset=0&articleLimit=10',
+            'date': '2023년5월22일(화)'},
+           {'id': 875,
+            'category': '[학사]',
+            'title': '2023년도 수림재단 신규장학생 선발 안내',
+            'url': 'https://sport.skku.edu/sports/community/under_notice.do?mode=view&link=http://app.skku.edu/emate_app/bbs/b1805133145.nsf/api/data/documents/unid/1D71AD5C9E0E8CC84925899C00012BBE?multipart=false&article.offset=0&articleLimit=10',
+            'date': '23.03.01'},
+           {'id': 876,
+            'category': '[학사]',
+            'title': '2023학년도 1학기 졸업실기 안내 (수정)',
+            'url': 'https://sport.skku.edu/sports/community/under_notice.do?mode=view&link=http://app.skku.edu/emate_app/bbs/b1805133145.nsf/api/data/documents/unid/1DB091729D4AFD2A4925899B00301A2E?multipart=false&article.offset=0&articleLimit=10',
+            'date': '23.5.8'},
+           {'id': 877,
+            'category': '[학사]',
+            'title': '학부 졸업 실기평가 대체 증명서류 제출 안내',
+            'url': 'https://sport.skku.edu/sports/community/under_notice.do?mode=view&link=http://app.skku.edu/emate_app/bbs/b1805133145.nsf/api/data/documents/unid/6924F90B0BDA7AA7492589950001F7DC?multipart=false&article.offset=0&articleLimit=10',
+            'date': '4월18일(화)'},
+           {'id': 878,
+            'category': '[학사]',
+            'title': '2023학년도 1학기 교육실습 오리엔테이션 안내',
+            'url': 'https://sport.skku.edu/sports/community/under_notice.do?mode=view&link=http://app.skku.edu/emate_app/bbs/b1805133145.nsf/api/data/documents/unid/7192B197142E46DB49258990001E928B?multipart=false&article.offset=0&articleLimit=10',
+            'date': ""}
+            ]
+
+            // noticeData를 사용하여 공지사항 생성
+            for (const notice of noticeData) {
+                const { id, category, title, url, date } = notice;
+                const noticeEl = createNoticeElement(category, title, date, url, id);
+                noticeListEl.appendChild(noticeEl);
+            }
+
+            // 하트 클릭 이벤트 리스너 등록
+            const hearts = document.querySelectorAll('.heart span');
+            hearts.forEach((heart) => {
+                heart.addEventListener('click', handleHeartClick);
+            });
+
+
+            // 하트 클릭 이벤트 핸들러
+            function handleHeartClick(event) {
+                const clickedHeart = event.target;
+                const noticeId = clickedHeart.dataset.noticeId;
+                const notice = noticeData.find((item) => item.id === parseInt(noticeId));
+            
+                // 하트 상태 변경
+                clickedHeart.textContent = '❤️';
+                clickedHeart.removeEventListener('click', handleHeartClick);
+            
+                // 다른 웹사이트에 공지사항 내용 전달
+                sendNoticeToOtherWebsite(notice);
+            }
+            
+
+            
+            // 다른 웹사이트에 공지사항 내용 전달하는 함수
+            function sendNoticeToOtherWebsite(notice) {
+                const url = 'http://localhost:3000/save-notice';
+            
+                const data = {
+                notice: notice
+                };
+            
+                const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+                };
+            
+                fetch(url, options)
+                .then((response) => {
+                    if (response.ok) {
+                    console.log('공지가 성공적으로 저장되었습니다.');
+                    } else {
+                    console.log('공지 저장에 실패했습니다.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('공지 저장 중 오류가 발생했습니다.', error);
+                });
+            }
+
+        </script>
+    </body>
+
+    
+</html>
